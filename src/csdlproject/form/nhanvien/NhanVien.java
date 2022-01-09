@@ -8,6 +8,8 @@ package csdlproject.form.nhanvien;
  *
  * @author VIP
  */
+//nhan
+//vien
 public class NhanVien {
     private String MaNV, TenNV, GioiTinh, DiaChi, DienThoai;
 
