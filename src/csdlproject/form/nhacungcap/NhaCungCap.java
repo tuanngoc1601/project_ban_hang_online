@@ -8,7 +8,6 @@ package csdlproject.form.nhacungcap;
  *
  * @author VIP
  */
-//nha cung cap
 public class NhaCungCap {
     private String MaNCC, TenNCC, DiaChi, DienThoai;
     
