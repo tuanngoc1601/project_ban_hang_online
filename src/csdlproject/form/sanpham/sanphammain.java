@@ -4,9 +4,7 @@
  */
 package csdlproject.form.sanpham;
 
-import csdlproject.form.nhacungcap.NhaCungCap;
-import csdlproject.form.nhacungcap.timkiemNCC;
-import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
