@@ -510,7 +510,7 @@ public class navbar extends javax.swing.JFrame {
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
         // TODO add your handling code here:
-        controller.setView(jPanel6, jLabel3, "DatHang");
+        controller.setView(jPanel6, jLabel3, "TrungTambaoHanh");
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered

@@ -19,6 +19,7 @@ import csdlproject.form.thongke.hoadonbanmain;
 import csdlproject.form.dathang.dathangmain;
 import csdlproject.form.nhaphang.nhaphangmain;
 import csdlproject.form.quanlikhachhang.quanlikhachhangmain;
+import csdlproject.form.trungtambaohanh.trungtambaohanhmain;
 
 
 
@@ -48,11 +49,8 @@ class controller {
                 case "SanPham":
                     view = new sanphammain(this.jfrMain);
                     break;
-                case "DatHang":
-                    view = new dathangmain(this.jfrMain);
-                    break;
-                case "NhapHang":
-                    view = new nhaphangmain(this.jfrMain);
+                case "TrungTambaoHanh":
+                    view = new trungtambaohanhmain(this.jfrMain);
                     break;
                 case "NhaCungCap":
                     view = new nhacungcapmain(this.jfrMain);
