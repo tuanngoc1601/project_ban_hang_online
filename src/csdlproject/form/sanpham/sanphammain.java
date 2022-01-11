@@ -5,8 +5,13 @@
 package csdlproject.form.sanpham;
 
 
+import csdlproject.database_connect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,10 +24,182 @@ public class sanphammain extends javax.swing.JPanel {
      */
     
     private JFrame parentJFrame; 
+    DefaultTableModel tblModel;
 
     public sanphammain(JFrame parentFrame) {
         this.parentJFrame = parentFrame;
         initComponents();
+        initTable();
+        LoadDatabase();
+    }
+    
+    private void initTable() {
+        tblModel = new DefaultTableModel();
+        tblModel.setColumnIdentifiers(new String[]{"Mã Hàng Hóa", "Tên Hàng Hóa", "Mã Loại Hãng", "Chip", "Main", "HDD", "RAM", "VGA", "SSD", "Số Lượng", "Giá Nhập", "Giá Bán"});
+        jTable1.setModel(tblModel);
+    }
+    
+    public void LoadDatabase(){
+            
+            try {
+                    String insert = "select * from hanghoa";
+                    Connection connect = database_connect.connection();
+                    PreparedStatement data_connect = connect.prepareStatement(insert);
+                    
+                    ResultSet rs = data_connect.executeQuery();
+                    tblModel.setRowCount(0);
+                    while(rs.next()) {
+                        String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                        tblModel.addRow(row);
+                    }
+                    tblModel.fireTableDataChanged();
+            
+            }
+                
+            catch(Exception e) {
+            
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+    }
+    
+    public void UpdateDatabaseLoaiHang() {
+        try {
+            String insert = "select hanghoa.* from hanghoa inner join loaihang on hanghoa.malh = loaihang.malh where loaihang.tenlh = ?";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setString(1, jComboBox1.getSelectedItem().toString());
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    public void UpdateDatabaseRAM() {
+        try {
+            String insert = "select * from hanghoa where (ram = ?)";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setString(1, jComboBox3.getSelectedItem().toString());
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    public void UpdateDatabaseChip() {
+        try {
+            String insert = "select * from hanghoa where (chip = ?)";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setString(1, jComboBox2.getSelectedItem().toString());
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    public void UpdateDatabaseVGA() {
+        try {
+            String insert = "select * from hanghoa where (vga = ?)";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setString(1, jComboBox4.getSelectedItem().toString());
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    public void UpdateDatabaseTenHangHoa() {
+        try {
+            String insert = "select * from hanghoa where (tenhang = ?)";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setString(1, jTextField1.getText());
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    public void UpdateDatabaseThoiGianTonKho() {
+        try {
+            String insert = "select * from hanghoa as hh inner join chitiethdmua as cthdm on hh.mahh = cthdm.mhh inner join hoadonmua as hdm on cthdm.mahd = hdm.mahd where (hh.slton > 1) and (hdm.ngaylap < {fn NOW()} - 30*?)";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setInt(1, Integer.parseInt(jTextField2.getText()));
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    public void UpdateDatabaseSoLuongTon() {
+        try {
+            String insert = "select * from hanghoa where slton <= ?";
+            Connection connect = database_connect.connection();
+            PreparedStatement data_connect = connect.prepareStatement(insert);
+            
+            data_connect.setInt(1, Integer.parseInt(jTextField3.getText()));
+            ResultSet rs = data_connect.executeQuery();
+            tblModel.setRowCount(0);
+            while(rs.next()) {
+                String[] row = new String[]{rs.getString("mahh"), rs.getString("tenhang"), rs.getString("malh"), rs.getString("chip"), rs.getString("main"), rs.getString("hdd"), rs.getString("ram"), rs.getString("vga"), rs.getString("ssd"), rs.getString("slton"), rs.getString("gianhap"), rs.getString("giaban")};
+                tblModel.addRow(row);
+            }
+            tblModel.fireTableDataChanged();
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     /**
@@ -65,36 +242,16 @@ public class sanphammain extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Máy Tính", "Tên Máy Tính", "Mã NCC", "Số Lượng", "Giá Bán"
+                "Mã Hàng Hóa", "Tên Hàng Hóa", "Mã Loại Hãng", "Chip", "Main", "HDD", "RAM", "VGA", "SSD", "Số Lượng", "Gía Nhập", "Giá Bán"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(417, 417, 417)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
 
         jButton5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icon_tim_kiem.png"))); // NOI18N
@@ -223,11 +380,12 @@ public class sanphammain extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -236,7 +394,30 @@ public class sanphammain extends javax.swing.JPanel {
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(417, 417, 417)
+                .addComponent(jLabel1)
+                .addContainerGap(397, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -244,53 +425,105 @@ public class sanphammain extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-//        if(jTextField6.getText().equals("")) {
-//            JOptionPane.showMessageDialog(this, "Ban Chua Nhap Ma Hang Hoa!");
-//            return ;
-//        }
-//        
-//        try {
-//            timkiemSP tksp = new timkiemSP();
-//            SanPham sp = new SanPham();
-//            sp = tksp.timkiem_sp(jTextField6.getText());
-//            if(sp != null) {
-//                jTextField1.setText(sp.getMaLH());
-//                jTextField2.setText(sp.getMaNCC());
-//                jTextField6.setText(sp.getMaHH());
-//                jTextField10.setText(sp.getMaTTBH());
-//                jTextField9.setText(sp.getTenHang());
-//                jTextField16.setText(sp.getTenLH());
-//                jTextField8.setText(sp.getChip());
-//                jTextField11.setText(sp.getMain());
-//                jTextField14.setText(sp.getSSD());
-//                jTextField12.setText(sp.getHDD());
-//                jTextField13.setText(sp.getRAM());
-//                jTextField7.setText(sp.getVGA());
-//                jTextField3.setText(Integer.toString(sp.getSoLuong()));
-//                jTextField4.setText(Integer.toString(sp.getGiaBan()));
-//                jTextField15.setText(Integer.toString(sp.getGiaNhap()));
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(this, "Khong Tim Thay Nha Cung Cap Nay!");
-//            }
-//        }
-//        catch(Exception e) {
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
+        LoadDatabase();
+        if(jComboBox1.getSelectedItem().toString().equals("Chọn") && jComboBox2.getSelectedItem().toString().equals("Chọn") && jComboBox4.getSelectedItem().toString().equals("Chọn") && jComboBox3.getSelectedItem().toString().equals("Chọn") && jTextField1.getText().equals("") && jTextField2.getText().equals("") && jTextField3.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ban Chua Nhap Thong Tin De Tim Kiem!");
+            return ;
+        }
         
+        try {
+            timkiemSP tkSP = new timkiemSP();
+            SanPham sp = new SanPham();
+            if(!jComboBox1.getSelectedItem().toString().equals("Chọn")) {
+                sp = tkSP.timkiem_TenLoaiHang(jComboBox1.getSelectedItem().toString());
+                if(sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseLoaiHang();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+            
+            
+            if(!jComboBox2.getSelectedItem().toString().equals("Chọn")) {
+                sp = tkSP.timkiem_Chip(jComboBox2.getSelectedItem().toString());
+                if( sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseChip();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+            
+            if(!jComboBox4.getSelectedItem().toString().equals("Chọn")) {
+                sp = tkSP.timkiem_VGA(jComboBox4.getSelectedItem().toString());
+                if( sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseVGA();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+            
+            if(!jComboBox3.getSelectedItem().toString().equals("Chọn")) {
+                sp = tkSP.timkiem_RAM(jComboBox3.getSelectedItem().toString());
+                if( sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseRAM();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+            
+            if(!jTextField1.getText().equals("")) {
+                sp = tkSP.timkiem_TenHangHoa(jTextField1.getText());
+                if( sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseTenHangHoa();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+            
+            if(!jTextField2.getText().equals("")) {
+                sp = tkSP.timkiem_ThoiGianTonKho(jTextField2.getText());
+                if( sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseThoiGianTonKho();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+            
+            if(!jTextField3.getText().equals("")) {
+                sp = tkSP.timkiem_SoLuongTon(jTextField3.getText());
+                if( sp != null) {
+                    JOptionPane.showMessageDialog(this, "Da Tim Thay San Pham!");
+                    UpdateDatabaseSoLuongTon();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Khong Tim Thay San Pham Nao!");
+                }
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
