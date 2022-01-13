@@ -104,7 +104,7 @@ public class sanphammain extends javax.swing.JPanel {
     
     public void UpdateDatabaseChip() {
         try {
-            String insert = "select * from hanghoa where (chip = ?)";
+            String insert = "select * from hanghoa where (chip LIKE '%' + ? +'%')";
             Connection connect = database_connect.connection();
             PreparedStatement data_connect = connect.prepareStatement(insert);
             
@@ -272,7 +272,7 @@ public class sanphammain extends javax.swing.JPanel {
         jLabel4.setText("Chip");
 
         jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn", "core i3", "core i5", "core i7", "core i9" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn", "i3", "core i5", "i7", "i9" }));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel5.setText("RAM");

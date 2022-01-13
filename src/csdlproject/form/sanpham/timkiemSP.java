@@ -51,7 +51,7 @@ public class timkiemSP {
     } 
     
     public SanPham timkiem_Chip(String chip) throws Exception{
-            String search = "select * from hanghoa where (chip = ?)";
+            String search = "select * from hanghoa where (chip LIKE '%' + ? +'%')";
             try (
                     Connection connect = database_connect.connection();
                     PreparedStatement data_connect = connect.prepareStatement(search);

@@ -11,13 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import csdlproject.form.sanpham.sanphammain;
-import csdlproject.form.home;
 import csdlproject.form.nhacungcap.nhacungcapmain;
 import csdlproject.form.nhanvien.nhanvienmain;
-import csdlproject.form.thongke.Nhap.hoadonnhapmain;
-import csdlproject.form.thongke.Ban.hoadonbanmain;
-import csdlproject.form.dathang.dathangmain;
-import csdlproject.form.nhaphang.nhaphangmain;
 import csdlproject.form.quanlikhachhang.quanlikhachhangmain;
 import csdlproject.form.trungtambaohanh.trungtambaohanhmain;
 

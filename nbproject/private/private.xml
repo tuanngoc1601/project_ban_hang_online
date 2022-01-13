@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/trungtambaohanh/insert_TTBH.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/trungtambaohanh/TrungTamBaoHanh.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/trungtambaohanh/timkiemTTBH.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/trungtambaohanh/UpdateTTBH.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/nhacungcap/nhacungcapmain.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/trungtambaohanh/trungtambaohanhmain.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/nhacungcap/timkiemNCC.java</file>
-            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/trungtambaohanh/DeleteTTBH.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/thongke/Ban/InsertSP.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/thongke/Nhap/ChiTietHoaDonNhap.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/thongke/Nhap/hoadonnhapmain.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/thongke/doanhthumain.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/thongke/Ban/ChiTietHoaDonBan.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/thongke/Ban/hoadonbanmain.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/sanpham/timkiemSP.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/sanpham/sanphammain.java</file>
+            <file>file:/D:/Java_project/project_ban_hang_online/src/csdlproject/form/sanpham/insert_SP.java</file>
         </group>
     </open-files>
 </project-private>

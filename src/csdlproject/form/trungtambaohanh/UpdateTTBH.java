@@ -14,7 +14,7 @@ import java.sql.PreparedStatement;
  */
 public class UpdateTTBH {
     public Boolean Update_ttbh(TrungTamBaoHanh ttbh) throws Exception{
-            String search = "update ttbh set diachi = ?, sodienthoai = ? where mattbh = ?";
+            String search = "update ttbh set tenttbh = ?, diachi = ?, dienthoai = ? where mattbh = ?";
             try (
                     Connection connect = database_connect.connection();
                     PreparedStatement data_connect = connect.prepareStatement(search);
@@ -22,9 +22,10 @@ public class UpdateTTBH {
                 
                
             {
-                data_connect.setString(1, ttbh.getDiaChi());
-                data_connect.setString(2, ttbh.getDienThoai());
-                data_connect.setString(3, ttbh.getMaTTBH());
+                data_connect.setString(1, ttbh.getTenTTBH());
+                data_connect.setString(2, ttbh.getDiaChi());
+                data_connect.setString(3, ttbh.getDienThoai());
+                data_connect.setString(4, ttbh.getMaTTBH());
                 
                 return data_connect.executeUpdate() > 0;
             }

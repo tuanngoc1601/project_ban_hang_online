@@ -28,8 +28,9 @@ public class timkiemTTBH {
                 if(rs.next()) {
                     TrungTamBaoHanh ttbh = new TrungTamBaoHanh();
                     ttbh.setMaTTBH(rs.getString("mattbh"));
+                    ttbh.setTenTTBH(rs.getString("tenttbh"));
                     ttbh.setDiaChi(rs.getString("DiaChi"));
-                    ttbh.setDienThoai(rs.getString("SoDienThoai"));
+                    ttbh.setDienThoai(rs.getString("DienThoai"));
                     
                     return ttbh;
                 }

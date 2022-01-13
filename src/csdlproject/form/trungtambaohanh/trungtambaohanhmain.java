@@ -4,7 +4,6 @@
  */
 package csdlproject.form.trungtambaohanh;
 
-import csdlproject.form.nhacungcap.*;
 import csdlproject.database_connect;
 import java.awt.Color;
 import java.sql.Connection;
@@ -35,7 +34,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
     
     private void initTable() {
         tblModel = new DefaultTableModel();
-        tblModel.setColumnIdentifiers(new String[]{"Mã TTBH", "Địa Chỉ", "SĐT"});
+        tblModel.setColumnIdentifiers(new String[]{"Mã TTBH", "Tên TTBH", "Địa Chỉ", "SĐT"});
         jTable1.setModel(tblModel);
     }
     
@@ -49,7 +48,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
                     ResultSet rs = data_connect.executeQuery();
                     tblModel.setRowCount(0);
                     while(rs.next()) {
-                        String[] row = new String[]{rs.getString("mattbh"), rs.getString("diachi"), rs.getString("sodienthoai")};
+                        String[] row = new String[]{rs.getString("mattbh"), rs.getString("tenttbh"), rs.getString("diachi"), rs.getString("dienthoai")};
                         tblModel.addRow(row);
                     }
                     tblModel.fireTableDataChanged();
@@ -84,6 +83,8 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -165,6 +166,15 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel6.setText("Tên TTBH");
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,22 +189,27 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
                                 .addGap(368, 368, 368))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(95, 95, 95)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jButton2)
+                                            .addGap(46, 46, 46)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(52, 52, 52)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addGap(35, 35, 35)
-                                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jButton2)
-                                                .addGap(46, 46, 46)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(52, 52, 52)
-                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(55, 55, 55)))))
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(55, 55, 55))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,23 +224,19 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(6, 6, 6)))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,13 +260,13 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã TTBH", "Địa Chỉ", "SĐT"
+                "Mã TTBH", "Tên TTBH", "Địa Chỉ", "Số Điện Thoại"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -310,6 +321,14 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
             jTextField2.setBackground(Color.white);
         }
         
+        if(jTextField5.getText().equals("")) {
+            add_trung_tam_bao_hanh.append("Thong Tin Chua Day Du!");
+            jTextField5.setBackground(Color.RED);
+        }
+        else {
+            jTextField5.setBackground(Color.white);
+        }
+        
         if(jTextField3.getText().equals("")) {
             add_trung_tam_bao_hanh.append("Thong Tin Chua Day Du!");
             jTextField3.setBackground(Color.RED);
@@ -336,6 +355,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
             TrungTamBaoHanh ttbh = new TrungTamBaoHanh();
             TrungTamBaoHanh ttbh1 = tk.timkiem_ttbh(jTextField4.getText());
             ttbh.setMaTTBH(jTextField4.getText());
+            ttbh.setTenTTBH(jTextField5.getText());
             ttbh.setDiaChi(jTextField2.getText());
             ttbh.setDienThoai(jTextField3.getText());
             
@@ -357,6 +377,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         jTextField2.setText("");
+        jTextField5.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -375,6 +396,14 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
         }
         else {
             jTextField2.setBackground(Color.white);
+        }
+        
+        if(jTextField5.getText().equals("")) {
+            add_ttbh.append("Thong Tin chua day du!");
+            jTextField5.setBackground(Color.RED);
+        }
+        else {
+            jTextField5.setBackground(Color.white);
         }
         
         if(jTextField3.getText().equals("")) {
@@ -401,6 +430,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
         try {
             TrungTamBaoHanh ttbh = new TrungTamBaoHanh();
             ttbh.setMaTTBH(jTextField4.getText());
+            ttbh.setTenTTBH(jTextField5.getText());
             ttbh.setDiaChi(jTextField2.getText());
             ttbh.setDienThoai(jTextField3.getText());
             
@@ -447,6 +477,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
             ttbh = tkTTBH.timkiem_ttbh(jTextField4.getText());
             if(ttbh != null) {
                 jTextField4.setText(ttbh.getMaTTBH());
+                jTextField5.setText(ttbh.getTenTTBH());
                 jTextField2.setText(ttbh.getDiaChi());
                 jTextField3.setText(ttbh.getDienThoai());
             }
@@ -464,10 +495,15 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
         int row = jTable1.getSelectedRow();
         if(row >= 0) {
             jTextField4.setText(jTable1.getValueAt(row, 0).toString());
-            jTextField2.setText(jTable1.getValueAt(row, 1).toString());
-            jTextField3.setText(jTable1.getValueAt(row, 2).toString());
+            jTextField5.setText(jTable1.getValueAt(row, 1).toString());
+            jTextField2.setText(jTable1.getValueAt(row, 2).toString());
+            jTextField3.setText(jTable1.getValueAt(row, 3).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -480,6 +516,7 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -487,5 +524,6 @@ public class trungtambaohanhmain extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

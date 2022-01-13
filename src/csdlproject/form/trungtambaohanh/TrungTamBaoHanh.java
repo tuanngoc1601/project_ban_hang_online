@@ -9,7 +9,7 @@ package csdlproject.form.trungtambaohanh;
  * @author VIP
  */
 public class TrungTamBaoHanh {
-    private String MaTTBH, DiaChi, DienThoai;
+    private String MaTTBH, TenTTBH, DiaChi, DienThoai;
 
     public TrungTamBaoHanh() {
         
@@ -21,6 +21,14 @@ public class TrungTamBaoHanh {
 
     public void setMaTTBH(String MaTTBH) {
         this.MaTTBH = MaTTBH;
+    }
+
+    public String getTenTTBH() {
+        return TenTTBH;
+    }
+
+    public void setTenTTBH(String TenTTBH) {
+        this.TenTTBH = TenTTBH;
     }
 
     public String getDiaChi() {
@@ -39,9 +47,13 @@ public class TrungTamBaoHanh {
         this.DienThoai = DienThoai;
     }
 
-    public TrungTamBaoHanh(String MaTTBH, String DiaChi, String DienThoai) {
+    public TrungTamBaoHanh(String MaTTBH, String TenTTBH, String DiaChi, String DienThoai) {
         this.MaTTBH = MaTTBH;
+        this.TenTTBH = TenTTBH;
         this.DiaChi = DiaChi;
         this.DienThoai = DienThoai;
     }
+
+    
+
 }
