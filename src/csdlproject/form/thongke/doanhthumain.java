@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -84,7 +85,7 @@ public class doanhthumain extends javax.swing.JFrame {
             ResultSet rs = data_connect.executeQuery();
             tblModel.setRowCount(0);
             while(rs.next()) {
-                Object[] row = new Object[]{rs.getString("khachhang.makh"), rs.getString("khachhang.tenkh"), rs.getInt("doanhthu"), rs.getInt("loinhuan")};
+                Object[] row = new Object[]{rs.getString("makh"), rs.getString("tenkh"), rs.getInt("doanhthu"), rs.getInt("loinhuan")};
                 tblModel.addRow(row);
             }
             tblModel.fireTableDataChanged();
@@ -97,7 +98,7 @@ public class doanhthumain extends javax.swing.JFrame {
     public void UpdateDatabaseTop5MHLoiNhuanNhat() {
         try {
             initTableTop5MHLoiNHuanNhat();
-            String top5 = "select top(5) chitiethdban.mahd, hanghoa.tenhang, sum((chitiethdban.giaban - hanghoa.gianhap) * chitiethdban.slban) as loinhuan from chitiethdban inner join hanghoa on chitiethdban.mahh = hanghoa.mahh inner join hoadonban on chitiethdban.mahd = hoadonban.mahd group by chitiethdban.mahh, hanghoa.tenhang order by loinhuan DESC";
+            String top5 = "select chitiethdban.mahh, hanghoa.tenhang, sum((chitiethdban.giaban - hanghoa.gianhap) * chitiethdban.slban) as loinhuan from chitiethdban inner join hanghoa on chitiethdban.mahh = hanghoa.mahh inner join hoadonban on chitiethdban.mahd = hoadonban.mahd group by chitiethdban.mahh, hanghoa.tenhang order by loinhuan DESC limit 5";
             Connection connect = database_connect.connection();
             PreparedStatement data_connect = connect.prepareStatement(top5);
             
@@ -117,7 +118,7 @@ public class doanhthumain extends javax.swing.JFrame {
     public void UpdateDatabaseTop5MHKemLoiNhuanNhat() {
         try {
             initTableTop5MHKemLoiNHuanNhat();
-            String top5 = "select top(5) chitiethdban.mahh, hanghoa.tenhang, sum((chitiethdban.giaban - hanghoa.gianhap) * chitiethdban.slban) as loinhuan from chitiethdban inner join hanghoa on chitiethdban.mahh = hanghoa.mahh inner join hoadonban on chitiethdban.mahd = hoadonban.mahd group by chitiethdban.mahh, hanghoa.tenhang order by loinhuan";
+            String top5 = "select chitiethdban.mahh, hanghoa.tenhang, sum((chitiethdban.giaban - hanghoa.gianhap) * chitiethdban.slban) as loinhuan from chitiethdban inner join hanghoa on chitiethdban.mahh = hanghoa.mahh inner join hoadonban on chitiethdban.mahd = hoadonban.mahd group by chitiethdban.mahh, hanghoa.tenhang order by loinhuan limit 5";
             Connection connect = database_connect.connection();
             PreparedStatement data_connect = connect.prepareStatement(top5);
             
@@ -137,7 +138,7 @@ public class doanhthumain extends javax.swing.JFrame {
     public void UpdateDatabaseTop3NhaCungCap() {
         try {
             initTableTop3NhaCungCap();
-            String top3 = "select top(3) hoadonmua.mancc, nhacungcap.tenncc, sum((hanghoa.giaban - hanghoa.gianhap) * chitiethdmua.slmua) as loinhuan from chitiethdmua inner join hanghoa on chitiethdmua.mahh = hanghoa.mahh inner join hoadonmua on chitiethdmua.mahd = hoadonmua.mahd inner join nhacungcap on hoadonmua.mancc = nhacungcap.mancc group by hoadonmua.mancc, nhacungcap.tenncc order by loinhuan DESC";
+            String top3 = "select hoadonmua.mancc, nhacungcap.tenncc, sum((hanghoa.giaban - hanghoa.gianhap) * chitiethdmua.slmua) as loinhuan from chitiethdmua inner join hanghoa on chitiethdmua.mahh = hanghoa.mahh inner join hoadonmua on chitiethdmua.mahd = hoadonmua.mahd inner join nhacungcap on hoadonmua.mancc = nhacungcap.mancc group by hoadonmua.mancc, nhacungcap.tenncc order by loinhuan DESC limit 3";
             Connection connect = database_connect.connection();
             PreparedStatement data_connect = connect.prepareStatement(top3);
             
@@ -177,6 +178,8 @@ public class doanhthumain extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -263,43 +266,60 @@ public class doanhthumain extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel4.setText("Tổng Tiền");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(121, 121, 121)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(123, 123, 123)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(304, 304, 304)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(123, 123, 123)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4)))))
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(152, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(26, 26, 26)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(405, 405, 405))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(14, 14, 14)
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
@@ -354,8 +374,12 @@ public class doanhthumain extends javax.swing.JFrame {
         }
         
         try {
+            SimpleDateFormat dateformat = new SimpleDateFormat("mm/dd/yyyy");
+            String datex = dateformat.format(jDateChooser1.getDate());
+            String datey = dateformat.format(jDateChooser2.getDate());
             TongTienMuaHang tt = new TongTienMuaHang();
-//            int tong = tt.TongTien(jDateChooser1.getDate(), jDateChooser2.getDate());
+            int tong = tt.TongTien(datex, datey);
+            jTextField1.setText(Integer.toString(tong));
         }
         catch(Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -372,7 +396,7 @@ public class doanhthumain extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Da Thong Ke Thanh Cong Doanh Thu Va Loi Nhuan Khach Hang!");
                 UpdateDatabaseTKKhachHang();
             } else {
-                JOptionPane.showMessageDialog(this, "Loi");
+                JOptionPane.showMessageDialog(this, "Khong Tim Thay Khach Hang Nao Da Mua");
             }
         }
         catch(Exception e) {
@@ -419,14 +443,21 @@ public class doanhthumain extends javax.swing.JFrame {
             NhaCungCap ncc = new NhaCungCap();
             ncc = nhacc.TKTop3NCC();
             if(ncc != null) {
-                JOptionPane.showMessageDialog(this, "Da Thong Ke Thanh Cong Doanh Thu Va Loi Nhuan Khach Hang!");
+                JOptionPane.showMessageDialog(this, "Da Thong Ke Thanh Cong Top 3 Nha Cung Cap!");
                 UpdateDatabaseTop3NhaCungCap();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Khong Tim Thay Nha Cung Cap Nao!"); 
             }
         }
         catch(Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,9 +505,11 @@ public class doanhthumain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

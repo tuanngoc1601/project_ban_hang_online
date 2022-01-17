@@ -15,7 +15,7 @@ import java.sql.ResultSet;
  */
 public class Top3NhaCungCap {
     public NhaCungCap TKTop3NCC() throws Exception {
-        String ncc = "select top(3) hoadonmua.mancc, nhacungcap.tenncc, sum((hanghoa.giaban - hanghoa.gianhap) * chitiethdmua.slmua) as loinhuan from chitiethdmua inner join hanghoa on chitiethdmua.mahh = hanghoa.mahh inner join hoadonmua on chitiethdmua.mahd = hoadonmua.mahd inner join nhacungcap on hoadonmua.mancc = nhacungcap.mancc group by hoadonmua.mancc, nhacungcap.tenncc order by loinhuan DESC";
+        String ncc = "select hoadonmua.mancc, nhacungcap.tenncc, sum((hanghoa.giaban - hanghoa.gianhap) * chitiethdmua.slmua) as loinhuan from chitiethdmua inner join hanghoa on chitiethdmua.mahh = hanghoa.mahh inner join hoadonmua on chitiethdmua.mahd = hoadonmua.mahd inner join nhacungcap on hoadonmua.mancc = nhacungcap.mancc group by hoadonmua.mancc, nhacungcap.tenncc order by loinhuan DESC limit 3";
         try (
             Connection connect = database_connect.connection();
             PreparedStatement data_connect = connect.prepareStatement(ncc);    
